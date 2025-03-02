@@ -15,4 +15,3 @@ foreach ($students as $student) {
     }
 }
 echo implode(' ', $result);
-?>
