@@ -7,4 +7,3 @@ function calculateAverage($grades) {
 }
 $average = calculateAverage($grades);
 echo "Средняя оценка студентов: " . round($average, 2);
-?>
