@@ -1,16 +1,33 @@
 <?php
 
-$students = [ 
-    ['name' => 'Маша', 'age' => 22, 'grades' => [5, 4, 5]],
-    ['name' => 'Витя', 'age' => 23, 'grades' => [3, 4, 2]],
-    ['name' => 'Олег', 'age' => 21, 'grades' => [4, 5, 5]], 
-];
-
-foreach ($students as $student) {
-    $average = array_sum($student['grades']) / count($student['grades']);
-    
-    if ($average >= 4) {
-        echo $student['name'] . ': ' . number_format($average, 2) . ' ';
+function findThirdMax($arr) {
+    if (count($arr) < 3) {
+        return null; 
     }
+    $firstMax = $secondMax = $thirdMax = PHP_INT_MIN;
+
+    foreach ($arr as $num) {
+        if ($num > $firstMax) {
+            $thirdMax = $secondMax;
+            $secondMax = $firstMax;
+            $firstMax = $num;
+        } elseif ($num > $secondMax && $num < $firstMax) {
+            $thirdMax = $secondMax;
+            $secondMax = $num;
+        } elseif ($num > $thirdMax && $num < $secondMax) {
+            $thirdMax = $num;
+        }
+    }
+
+    return $thirdMax;
+}
+$numbers = [3, 1, 4, 4, 5, 2, 5];
+$thirdMax = findThirdMax($numbers);
+
+if ($thirdMax !== null) {
+    echo "Третье максимальное число: " . $thirdMax;
+} else {
+    echo "В массиве недостаточно уникальных элементов.";
 }
 
+?>
